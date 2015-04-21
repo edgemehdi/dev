@@ -1,0 +1,7 @@
+#!/bin/bash -eu
+
+from=$1
+echo $from
+
+docker build -t es_dump_restore .
+docker run -i -t -v `pwd`/dump:/dump es_dump_restore -backup elasticdump --limit=10000 --bulk=true --input=$from --output=/dump/file.json

@@ -1,0 +1,6 @@
+#!/bin/bash -eu
+
+host=$1
+echo $host
+
+docker run -i -t -v `pwd`/dump:/dump es_dump_restore elasticdump --limit=10000 --bulk=true --input=/dump/ES12dec.json --output=$host
